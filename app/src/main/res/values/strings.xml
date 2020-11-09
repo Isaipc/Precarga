@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Precarga</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_precarga">Precarga</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample_label">Texto</string>
+    <string name="creditos">Créditos</string>
+    <string name="tipo">Tipo</string>
+</resources>
