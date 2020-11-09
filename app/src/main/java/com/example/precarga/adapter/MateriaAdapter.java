@@ -32,8 +32,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaV
 
     @Override
     public void onBindViewHolder(@NonNull MateriaViewHolder holder, int position) {
-        Materia materia = materiaList.get(position);
-        holder.bind(materia);
+        holder.bindConnection(materiaList.get(position));
     }
 
     @Override
@@ -41,7 +40,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaV
         return materiaList != null ? materiaList.size() : 0 ;
     }
 
-    public static class MateriaViewHolder extends RecyclerView.ViewHolder{
+    public class MateriaViewHolder extends RecyclerView.ViewHolder{
         private MateriaItemBinding binding;
 
         public MateriaViewHolder(@NonNull MateriaItemBinding binding) {
@@ -49,9 +48,13 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaV
             this.binding = binding;
         }
 
-        public void bind(Materia materia){
+        public void bindConnection(Materia materia){
             binding.setMateria(materia);
-            binding.executePendingBindings();
         }
+
+//        public void bind(Materia materia){
+//            binding.setMateria(materia);
+//            binding.executePendingBindings();
+//        }
     }
 }

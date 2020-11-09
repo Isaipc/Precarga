@@ -25,7 +25,7 @@ public class PrecargaFragment extends Fragment {
     private PrecargaViewModel precargaViewModel;
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MateriaAdapter materiaAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -35,17 +35,14 @@ public class PrecargaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_precarga, container, false);
         recyclerView = root.findViewById(R.id.list_materias);
         layoutManager = new LinearLayoutManager(getActivity());
-
-        //mAdapter = new MateriaAdapter(myDataset);
-        //recyclerView.setAdapter(mAdapter);
-
+        setupMateriaList(root);
         return root;
     }
 
 
     private void setupMateriaList(View parent){
-        RecyclerView recyclerView = parent.findViewById(R.id.list_materias);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView = parent.findViewById(R.id.list_materias);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         List<Materia> materiaList = new ArrayList<>();
@@ -56,9 +53,14 @@ public class PrecargaFragment extends Fragment {
         materiaList.add(new Materia("PROGRAMACION", "03CAAC8", 4, "N"));
         materiaList.add(new Materia("TALLER INV. I", "03CAAC8", 4, "N"));
         materiaList.add(new Materia("SIST. PROG.", "03CAAC8", 4, "N"));
+
+        materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
+        materiaList.add(new Materia("INT. ART.", "03CAAC8", 4, "N"));
+        materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
         materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
 
-        MateriaAdapter materiaAdapter = new MateriaAdapter(materiaList);
+
+        materiaAdapter = new MateriaAdapter(materiaList);
         recyclerView.setAdapter(materiaAdapter);
 
     }
