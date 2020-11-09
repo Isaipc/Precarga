@@ -58,5 +58,8 @@ public class PrecargaFragment extends Fragment {
         materiaList.add(new Materia("SIST. PROG.", "03CAAC8", 4, "N"));
         materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
 
+        MateriaAdapter materiaAdapter = new MateriaAdapter(materiaList);
+        recyclerView.setAdapter(materiaAdapter);
+
     }
 }
