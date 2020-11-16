@@ -2,7 +2,11 @@ package com.example.precarga;
 
 import android.os.Bundle;
 
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,53 +19,47 @@ import android.widget.TextView;
 
 import com.example.precarga.adapter.MateriaAdapter;
 import com.example.precarga.data.Materia;
+import com.example.precarga.databinding.FragmentPrecargaBinding;
 import com.example.precarga.viewmodels.PrecargaViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.zip.Inflater;
 
-public class PrecargaFragment extends Fragment {
+public class PrecargaFragment extends Fragment{
 
-    private PrecargaViewModel precargaViewModel;
-
-    private RecyclerView recyclerView;
-    private MateriaAdapter materiaAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private FragmentPrecargaBinding binding;
+    private View mRoot;
+    private PrecargaViewModel mViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+//        binding = DataBindingUtil.inflate(inflater,
+//                R.layout.fragment_precarga,
+//                container,
+//                false);
+        mRoot = inflater.inflate(R.layout.fragment_precarga, container, false);
+        setupMateriaList();
 
-        View root = inflater.inflate(R.layout.fragment_precarga, container, false);
-        recyclerView = root.findViewById(R.id.list_materias);
-        layoutManager = new LinearLayoutManager(getActivity());
-        setupMateriaList(root);
-        return root;
+//        return binding.getRoot();
+        return mRoot;
     }
 
+    private void setupMateriaList() {
+        final MateriaAdapter adapter = new MateriaAdapter();
 
-    private void setupMateriaList(View parent){
-        recyclerView = parent.findViewById(R.id.list_materias);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView rvMaterias = mRoot.findViewById(R.id.list_materias);
+        rvMaterias.setAdapter(adapter);
+//        binding.listMaterias.setAdapter(adapter);
 
-        List<Materia> materiaList = new ArrayList<>();
-
-        materiaList.add(new Materia("SOFT.DE SIS.II", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("BASES DATOS II", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("REDES DE COM II", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("PROGRAMACION", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("TALLER INV. I", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("SIST. PROG.", "03CAAC8", 4, "N"));
-
-        materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("INT. ART.", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
-        materiaList.add(new Materia("GEST. PROY. SOFT.", "03CAAC8", 4, "N"));
-
-
-        materiaAdapter = new MateriaAdapter(materiaList);
-        recyclerView.setAdapter(materiaAdapter);
-
-    }
+        mViewModel = new ViewModelProvider(requireActivity()).get(PrecargaViewModel.class);
+        mViewModel.getAll().observe(requireActivity(), adapter::submitList);
+//        binding.setPrecargaViewModel(viewModel);
+//        binding.setLifecycleOwner(getActivity());
+//        binding.executePendingBindings();
+   }
 }

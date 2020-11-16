@@ -1,17 +1,33 @@
 package com.example.precarga.viewmodels;
 
+import android.app.Application;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class PrecargaViewModel extends ViewModel {
+import com.example.precarga.data.Materia;
+import com.example.precarga.data.Repository;
 
-    private MutableLiveData<String> mText;
+import java.util.ArrayList;
+import java.util.List;
 
-    public PrecargaViewModel(){
-        mText = new MutableLiveData<>();
-        mText.setValue("'Precarga' text from ViewModel ");
+public class PrecargaViewModel extends AndroidViewModel {
+
+    private final LiveData<List<Materia>> mMaterias;
+
+    private Repository mRepository;
+
+    public PrecargaViewModel(@NonNull Application app) {
+        super(app);
+        mRepository = new Repository(app);
+        mMaterias = mRepository.getAll();
     }
 
-    public LiveData<String> getText(){ return mText; }
+    public LiveData<List<Materia>> getAll() {
+        return mMaterias;
+    }
 }

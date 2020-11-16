@@ -30,7 +30,7 @@
                 android:layout_marginBottom="8dp"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:text="@{materia.nombre}"
+                android:text="@{materia.nombreCorto}"
                 app:layout_constraintBottom_toTopOf="@+id/textView2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
