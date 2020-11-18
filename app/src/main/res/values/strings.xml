@@ -11,4 +11,5 @@
     <string name="sample_label">Texto</string>
     <string name="creditos">Créditos</string>
     <string name="tipo">Tipo</string>
+    <string name="instruccion_precarga">Seleccione una o varias materias</string>
 </resources>
