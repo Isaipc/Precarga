@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="materia"
             type="com.example.precarga.data.Materia" />
@@ -13,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/card_vertical_margin"
-        app:checkedIcon="@drawable/ic_baseline_check_circle_24"
-        app:checkedIconTint="@color/colorPrimary"
         android:checkable="true"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        app:checkedIcon="@drawable/ic_baseline_check_circle_24"
+        app:checkedIconTint="@color/colorPrimary">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
