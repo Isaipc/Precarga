@@ -4,21 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginVertical="@dimen/md_v_margin"
     tools:context=".PrecargaFragment">
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="@dimen/md_h_margin"
+        android:text="@string/instruccion_precarga" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/md_h_margin"
-        android:layout_marginVertical="@dimen/sm_v_margin"
-        android:text="@string/instruccion_precarga" />
+        android:layout_toStartOf="@id/total_credit"
+        android:layout_toEndOf="@id/text"
+        android:text="@string/total_credit"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+    <TextView
+        android:id="@+id/total_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/md_h_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorPrimaryDark"
+        tools:text="@tools:sample/us_zipcodes" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_materias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text"
+        android:layout_marginTop="@dimen/md_v_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/materia_item" />
 </RelativeLayout>
