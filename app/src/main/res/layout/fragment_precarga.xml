@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text"
-        android:layout_marginTop="@dimen/md_v_margin"
+        android:layout_marginTop="@dimen/lg_v_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/materia_item" />
 </RelativeLayout>

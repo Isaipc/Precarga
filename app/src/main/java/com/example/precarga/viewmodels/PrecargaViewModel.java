@@ -18,16 +18,23 @@ import java.util.List;
 public class PrecargaViewModel extends AndroidViewModel {
 
     private final LiveData<List<Materia>> mMaterias;
+    private  MutableLiveData<Integer> mTotalCredit;
 
     private Repository mRepository;
 
     public PrecargaViewModel(@NonNull Application app) {
         super(app);
-        mRepository = new Repository(app);
-        mMaterias = mRepository.getAll();
+        this.mRepository = new Repository(app);
+        this.mMaterias = mRepository.getAll();
+        this.mTotalCredit = new MutableLiveData<>();
+        this.mTotalCredit.setValue(0);
     }
 
     public LiveData<List<Materia>> getAll() {
-        return mMaterias;
+        return this.mMaterias;
+    }
+
+    public MutableLiveData<Integer> getTotalCredit() {
+        return this.mTotalCredit;
     }
 }

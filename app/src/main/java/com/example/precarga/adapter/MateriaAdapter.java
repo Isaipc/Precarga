@@ -1,12 +1,14 @@
 package com.example.precarga.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +17,6 @@ import com.example.precarga.R;
 import com.example.precarga.data.Materia;
 import com.example.precarga.databinding.MateriaItemBinding;
 import com.google.android.material.card.MaterialCardView;
-
-import java.util.List;
 
 public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaHolder> {
 
@@ -35,6 +35,8 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
 
     public MateriaAdapter() {
         super(DIFF_CALLBACK);
+//        this.mTotalCredit = new MutableLiveData<>();
+//        this.mTotalCredit.setValue(0);
     }
 
     @NonNull
@@ -46,13 +48,28 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
         return new MateriaHolder(binding);
     }
 
+    public int totalCredit;
+//    private MutableLiveData<Integer> mTotalCredit;
+
+//    public LiveData<Integer> getTotalCredit() {
+//        return mTotalCredit;
+//    }
+
     @Override
     public void onBindViewHolder(@NonNull MateriaHolder holder, int position) {
-        holder.bindConnection(getItem(position));
-        holder.cardItem.setOnClickListener(mOnClickListener);
-    }
+        Materia materia = getItem(position);
 
-    private final View.OnClickListener mOnClickListener = view -> ((MaterialCardView)view).toggle();
+        holder.bindConnection(materia);
+        holder.cardItem.setOnClickListener(view -> {
+            ((MaterialCardView) view).toggle();
+            totalCredit += materia.creditos;
+//            mTotalCredit.setValue(totalCredit);
+
+            Log.d("HEY HEY!", "onClick: + " + materia.creditos + " creditos");
+//            Log.d("HEY HEY!", "total:  " + getTotalCredit() + " creditos");
+        });
+
+    }
 
     class MateriaHolder extends RecyclerView.ViewHolder {
         public CardView cardItem;

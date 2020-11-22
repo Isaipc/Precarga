@@ -5,6 +5,8 @@
     <dimen name="card_vertical_margin">8dp</dimen>
     <dimen name="sm_h_margin">8dp</dimen>
     <dimen name="sm_v_margin">8dp</dimen>
-    <dimen name="md_v_margin">16dp</dimen>
     <dimen name="md_h_margin">16dp</dimen>
+    <dimen name="md_v_margin">16dp</dimen>
+    <dimen name="lg_h_margin">24dp</dimen>
+    <dimen name="lg_v_margin">24dp</dimen>
 </resources>
