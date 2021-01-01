@@ -190,16 +190,30 @@
         tools:src="@tools:sample/avatars" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_reticula"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/personal_data_card"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="@dimen/md_h_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="@dimen/md_h_margin"
-        android:text="ver retícula" />
+        app:layout_constraintTop_toBottomOf="@id/personal_data_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reticula"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="mostrar retícula" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_precarga"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="mostrar precarga" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

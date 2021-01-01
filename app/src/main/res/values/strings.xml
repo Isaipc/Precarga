@@ -13,8 +13,8 @@
     <string name="tipo">Tipo de curso</string>
     <string name="instruccion_precarga">Seleccione materias a cargar</string>
     <string name="total_credit">Total de créditos</string>
-    <string name="reticula">http://itssat.edu.mx/reticulas/ReticulaTecnologiasMoviles.pdf</string>
-    <string name="random_pdf_test_url">https://www.nebrija.es/~cmalagon/ia/transparencias/introduccion_IA.pdf</string>
+    <string name="reticula">https://drive.google.com/file/d/1ASvrVjouFQzt_QUGHOcNYSDs1o1vfG2A/view?usp=sharing</string>
+    <string name="precarga">https://drive.google.com/file/d/15RZmT-V2XVje8LF_9cOGp-phgvj8Gh6E/view?usp=sharing</string>
     <string name="docs_google_url_1">https://docs.google.com/viewer?embedded=true&amp;url=</string>
     <string name="docs_google_url_2">https://docs.google.com/viewer?url=</string>
 </resources>

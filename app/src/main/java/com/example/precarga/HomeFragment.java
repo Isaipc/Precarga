@@ -20,6 +20,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+    public static final String URL = "DOC-URL";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -34,10 +36,19 @@ public class HomeFragment extends Fragment {
         });
 
 
-        Button btn = root.findViewById(R.id.btn_reticula);
-        btn.setOnClickListener(view -> {
+        Button btn_reticula = root.findViewById(R.id.btn_reticula);
+        Button btn_precarga = root.findViewById(R.id.btn_precarga);
+
+        btn_reticula.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), PdfViewActivity.class);
-            getActivity().startActivity(intent);
+            intent.putExtra(URL, getString(R.string.reticula));
+            startActivity(intent);
+        });
+
+        btn_precarga.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PdfViewActivity.class);
+            intent.putExtra(URL, getString(R.string.precarga));
+            startActivity(intent);
         });
         return root;
     }

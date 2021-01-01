@@ -15,14 +15,17 @@ import android.webkit.WebViewClient;
 
 public class PdfViewActivity extends AppCompatActivity {
 
+    private String url = "";
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
 
-
+        url = getIntent().getStringExtra(HomeFragment.URL);
         setUpWebView();
+        getSupportActionBar().hide();
     }
 
     protected void setUpWebView() {
@@ -33,7 +36,6 @@ public class PdfViewActivity extends AppCompatActivity {
         progressDialog.setMessage("Cargando documento");
         progressDialog.setCancelable(false);
 
-        String url = getString(R.string.docs_google_url_2) + getString(R.string.reticula);
         webView.requestFocus();
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient() {
