@@ -24,22 +24,27 @@ public interface ApiService {
     String URL = "https://auth-precarga.herokuapp.com/api/";
 
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
-//    @FormUrlEncoded
     @POST("auth/login")
     Call<LoginResponse> login(
             @Body LoginRequest user
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
+    @GET("auth/logout")
+    Call<MensajeResponse> logout(
+            @Header("Authorization") String token
+    );
+
+    @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("auth/user")
-    Call<UsuarioResponse> user(
-            @Header("Authorization") String auth
+    Call<UsuarioResponse> obtenerDatosUsuario(
+            @Header("Authorization") String token
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @POST("precarga/guardar")
     Call<MensajeResponse> guardarPrecarga(
-            @Header("Authorization") String auth,
+            @Header("Authorization") String token,
             @Field("materias") List<Materia> materias
     );
 
@@ -47,7 +52,7 @@ public interface ApiService {
     @FormUrlEncoded
     @GET("precarga/solicitar")
     Call<ReticulaResponse> solicitarPrecarga(
-            @Header("Authorization") String auth
+            @Header("Authorization") String token
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})

@@ -28,4 +28,5 @@
     <string name="login_failed">"¡Login fallido!"</string>
     <string name="login_unauthorized">Credenciales incorrectas</string>
     <string name="clave">clave</string>
+    <string name="logout">cerrar sesión</string>
 </resources>
