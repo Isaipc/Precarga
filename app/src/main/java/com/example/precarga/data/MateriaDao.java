@@ -2,10 +2,11 @@ package com.example.precarga.data;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.example.precarga.data.models.Materia;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface MateriaDao {
     void insert(Materia materia);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertAll(Materia ... materias);
+    void insertAll(Materia... materias);
 
     @Query("SELECT * FROM materias")
     LiveData<List<Materia>> getAll();

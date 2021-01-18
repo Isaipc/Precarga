@@ -17,4 +17,15 @@
     <string name="precarga">https://drive.google.com/file/d/15RZmT-V2XVje8LF_9cOGp-phgvj8Gh6E/view?usp=sharing</string>
     <string name="docs_google_url_1">https://docs.google.com/viewer?embedded=true&amp;url=</string>
     <string name="docs_google_url_2">https://docs.google.com/viewer?url=</string>
+    <string name="title_activity_login">Iniciar sesión</string>
+    <string name="prompt_email">Login</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="welcome">"¡Bienvenido!"</string>
+    <string name="invalid_username">Debe proporcionar el usuario</string>
+    <string name="invalid_password">Debe proporcionar un password</string>
+    <string name="login_failed">"¡Login fallido!"</string>
+    <string name="login_unauthorized">Credenciales incorrectas</string>
+    <string name="clave">clave</string>
 </resources>

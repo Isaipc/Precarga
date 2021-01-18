@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.precarga.R;
-import com.example.precarga.data.Materia;
+import com.example.precarga.data.models.Materia;
 import com.example.precarga.databinding.MateriaItemBinding;
 import com.google.android.material.card.MaterialCardView;
 

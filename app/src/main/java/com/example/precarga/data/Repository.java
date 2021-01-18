@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.precarga.data.models.Materia;
+
 import java.util.List;
 
 public class Repository {

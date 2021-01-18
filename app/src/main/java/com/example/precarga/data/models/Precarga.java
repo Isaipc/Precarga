@@ -1,4 +1,4 @@
-package com.example.precarga.data;
+package com.example.precarga.data.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

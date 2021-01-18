@@ -1,9 +1,10 @@
-package com.example.precarga.data;
+package com.example.precarga.data.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "materias")
 public class Materia {
@@ -14,6 +15,7 @@ public class Materia {
     @NonNull
     public String nombre;
 
+    @SerializedName("nombre_corto")
     @NonNull
     public String nombreCorto;
 
