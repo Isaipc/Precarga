@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.GONE);
 
                 if (response.code() == 200) {
+                    assert response.body() != null;
 
                     String token = response.body().getAccessToken();
                     String tokenType = response.body().getTokenType();
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull Call<LoginResponse> call, @NotNull Throwable t) {
                 mostrarLoginFallido(R.string.login_failed);
+                loadingProgressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -122,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
     private void guardarSession(String token, String tokenType) {
         sessionManager.saveAuthToken(tokenType + " " + token);
     }
-
 
     private void mostrarLoginFallido(@StringRes Integer errorString) {
         final View viewpos = findViewById(R.id.l_snackbar);
