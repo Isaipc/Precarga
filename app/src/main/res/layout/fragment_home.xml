@@ -13,10 +13,11 @@
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@color/design_default_color_background"
         app:cardPreventCornerOverlap="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/l_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/lg_h_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Juana La Cubana"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="No.Control 0123456789"
                 android:textAlignment="center" />
 
             <View
@@ -51,32 +50,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:layout_marginVertical="@dimen/activity_vertical_margin">
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:useDefaultMargins="true">
 
                 <TextView
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Semestre" />
+                    android:text="@string/semestre" />
 
                 <TextView
                     android:layout_row="0"
                     android:layout_column="1"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Porcentaje" />
+                    android:text="@string/porcentaje" />
 
                 <TextView
                     android:layout_row="0"
                     android:layout_column="2"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Promedio" />
+                    android:text="@string/promedio" />
 
                 <TextView
                     android:id="@+id/text_semestre"
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:layout_gravity="fill_horizontal"
-                    android:text="9°" />
+                    android:layout_gravity="fill_horizontal" />
 
                 <TextView
                     android:id="@+id/text_porcentaje"
@@ -89,26 +88,25 @@
                     android:id="@+id/text_promedio"
                     android:layout_row="1"
                     android:layout_column="2"
-                    android:layout_gravity="fill_horizontal"
-                    android:text="82.4%" />
+                    android:layout_gravity="fill_horizontal" />
 
                 <TextView
                     android:layout_row="2"
                     android:layout_column="0"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Especiales" />
+                    android:text="@string/especiales" />
 
                 <TextView
                     android:layout_row="2"
                     android:layout_column="1"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Repetición" />
+                    android:text="@string/repeticion" />
 
                 <TextView
                     android:layout_row="2"
                     android:layout_column="2"
                     android:layout_gravity="fill_horizontal"
-                    android:text="Créd. acum." />
+                    android:text="@string/cred_acum" />
 
                 <TextView
                     android:id="@+id/text_especiales"
@@ -128,8 +126,7 @@
                     android:id="@+id/text_cred_acum"
                     android:layout_row="3"
                     android:layout_column="2"
-                    android:layout_gravity="fill_horizontal"
-                    android:text="231" />
+                    android:layout_gravity="fill_horizontal" />
             </GridLayout>
 
             <View
@@ -141,38 +138,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:layout_marginVertical="@dimen/activity_vertical_margin">
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:useDefaultMargins="true">
 
                 <TextView
                     android:layout_row="0"
                     android:layout_column="0"
-                    android:text="Fecha de inscripción" />
+                    android:text="@string/fecha_inscripcion" />
 
                 <TextView
                     android:id="@+id/text_f_inscripcion"
                     android:layout_row="0"
-                    android:layout_column="1"
-                    android:text="2020-09-08" />
+                    android:layout_column="1" />
 
                 <TextView
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:text="Hora de inscripción" />
-
-                <TextView
-                    android:id="@+id/text_h_inscripcion"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:text="15:00" />
-
-                <TextView
-                    android:layout_row="2"
-                    android:layout_column="0"
-                    android:text="Límite de carga" />
+                    android:text="@string/limite_carga" />
 
                 <TextView
                     android:id="@+id/text_limite_carga"
-                    android:layout_row="2"
+                    android:layout_row="1"
                     android:layout_column="1"
                     android:text="36 máxima 20 mínima" />
             </GridLayout>
@@ -180,41 +166,30 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/img_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toTopOf="@+id/personal_data_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-
     <LinearLayout
+        android:id="@+id/l_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/md_h_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/personal_data_card"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personal_data_card">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_reticula"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="mostrar retícula" />
+            android:text="@string/mostrar_reticula" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_precarga"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="mostrar precarga" />
+            android:text="@string/mostrar_precarga" />
     </LinearLayout>
 
 

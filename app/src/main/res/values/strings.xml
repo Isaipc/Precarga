@@ -29,4 +29,14 @@
     <string name="login_unauthorized">Credenciales incorrectas</string>
     <string name="clave">clave</string>
     <string name="logout">cerrar sesión</string>
+    <string name="semestre">Semestre</string>
+    <string name="porcentaje">Porcentaje</string>
+    <string name="promedio">Promedio</string>
+    <string name="repeticion">Repetición</string>
+    <string name="especiales">Especiales</string>
+    <string name="cred_acum">Créd. acum.</string>
+    <string name="fecha_inscripcion">Fecha de inscripción</string>
+    <string name="limite_carga">Límite de carga</string>
+    <string name="mostrar_reticula">mostrar retícula</string>
+    <string name="mostrar_precarga">mostrar precarga</string>
 </resources>

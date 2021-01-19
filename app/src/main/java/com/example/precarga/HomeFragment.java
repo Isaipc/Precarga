@@ -14,17 +14,15 @@ import androidx.fragment.app.Fragment;
 import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
-import com.example.precarga.data.models.UsuarioDetallesResponse;
 import com.example.precarga.data.models.UsuarioResponse;
-import com.example.precarga.viewmodels.HomeViewModel;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-
-    private HomeViewModel homeViewModel;
 
     private SessionManager sessionManager;
 
@@ -40,9 +38,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        sessionManager = new SessionManager(this.requireContext());
-
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        sessionManager = new SessionManager(this.requireContext());
 
         nombre = root.findViewById(R.id.text_nombre);
         control = root.findViewById(R.id.text_control);
@@ -71,28 +69,31 @@ public class HomeFragment extends Fragment {
     }
 
     private void obtenerDatos() {
-
         String token = sessionManager.fetchAuthToken();
         ApiService apiService = ApiAdapter.getApiService();
 
         apiService.obtenerDatosUsuario(token).enqueue(new Callback<UsuarioResponse>() {
             @Override
-            public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
+            public void onResponse(@NotNull Call<UsuarioResponse> call,
+                                   @NotNull Response<UsuarioResponse> response) {
+
                 if (response.isSuccessful()) {
+
                     UsuarioResponse usuario = response.body();
-                    UsuarioDetallesResponse usuarioDetalles = usuario.getDetalles();
+
+                    assert usuario != null;
 
                     nombre.setText(usuario.getNombre());
-                    control.setText(usuario.getNombre());
-                    semestre.setText(usuarioDetalles.getNuevoPeriodo());
-                    promedio.setText((int) usuarioDetalles.getPromedio());
-                    creditos.setText(usuarioDetalles.getCreditos());
-                    inscripcion.setText(usuarioDetalles.getInscrito());
+                    control.setText(usuario.getControl());
+                    semestre.setText(String.valueOf(usuario.getPeriodo()));
+                    promedio.setText(String.valueOf(usuario.getPromedio()));
+                    creditos.setText(String.valueOf(usuario.getCreditos()));
+                    inscripcion.setText(usuario.getInscrito());
                 }
             }
 
             @Override
-            public void onFailure(Call<UsuarioResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<UsuarioResponse> call, @NotNull Throwable t) {
 
             }
         });
