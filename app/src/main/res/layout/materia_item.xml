@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{materia.nombreCorto}"
+                android:text="@{materia.nombre}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/activity_vertical_margin"
                 android:text="@string/creditos"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
                 app:layout_constraintEnd_toStartOf="@+id/textView3" />
 
             <TextView
@@ -98,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:text="@string/tipo"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-                app:layout_constraintEnd_toStartOf="@+id/textView7" />
+                app:layout_constraintEnd_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
