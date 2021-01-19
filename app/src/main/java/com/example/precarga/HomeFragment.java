@@ -15,6 +15,7 @@ import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
 import com.example.precarga.data.models.UsuarioResponse;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -94,7 +95,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(@NotNull Call<UsuarioResponse> call, @NotNull Throwable t) {
-
+                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
     }

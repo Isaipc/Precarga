@@ -39,4 +39,5 @@
     <string name="limite_carga">Límite de carga</string>
     <string name="mostrar_reticula">mostrar retícula</string>
     <string name="mostrar_precarga">mostrar precarga</string>
+    <string name="error">Se ha producido un error al cargar los datos</string>
 </resources>

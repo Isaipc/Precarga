@@ -14,6 +14,9 @@ import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
 import com.example.precarga.data.models.MensajeResponse;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,15 +45,17 @@ public class ProfileFragment extends Fragment {
         apiService.logout(sessionManager.fetchAuthToken())
                 .enqueue(new Callback<MensajeResponse>() {
                     @Override
-                    public void onResponse(Call<MensajeResponse> call, Response<MensajeResponse> response) {
+                    public void onResponse(@NotNull Call<MensajeResponse> call,
+                                           @NotNull Response<MensajeResponse> response) {
                         if (response.isSuccessful()) {
                             cerrar();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<MensajeResponse> call, Throwable t) {
-
+                    public void onFailure(@NotNull Call<MensajeResponse> call, @NotNull Throwable t) {
+                        Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG)
+                                .show();
                     }
                 });
     }
