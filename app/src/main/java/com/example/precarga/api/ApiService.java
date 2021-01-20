@@ -12,6 +12,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -41,6 +42,7 @@ public interface ApiService {
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
+    @FormUrlEncoded
     @POST("precarga/guardar")
     Call<MensajeResponse> guardarPrecarga(
             @Header("Authorization") String token,
