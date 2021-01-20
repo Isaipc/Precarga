@@ -1,6 +1,5 @@
 package com.example.precarga.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.precarga.PrecargaFragment;
 import com.example.precarga.R;
 import com.example.precarga.data.models.Materia;
 import com.example.precarga.databinding.MateriaItemBinding;
@@ -33,8 +33,6 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
 
     public MateriaAdapter() {
         super(DIFF_CALLBACK);
-//        this.mTotalCredit = new MutableLiveData<>();
-//        this.mTotalCredit.setValue(0);
     }
 
     @NonNull
@@ -46,25 +44,31 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
         return new MateriaHolder(binding);
     }
 
-    public int totalCredit;
-//    private MutableLiveData<Integer> mTotalCredit;
+    private PrecargaFragment.PrecargaListener precargaListener;
 
-//    public LiveData<Integer> getTotalCredit() {
-//        return mTotalCredit;
-//    }
+    public PrecargaFragment.PrecargaListener getPrecargaListener() {
+        return precargaListener;
+    }
+
+    public void setPrecargaListener(PrecargaFragment.PrecargaListener precargaListener) {
+        this.precargaListener = precargaListener;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull MateriaHolder holder, int position) {
         Materia materia = getItem(position);
 
         holder.bindConnection(materia);
-        holder.cardItem.setOnClickListener(view -> {
-            ((MaterialCardView) view).toggle();
-            totalCredit += materia.creditos;
-//            mTotalCredit.setValue(totalCredit);
 
-            Log.d("HEY HEY!", "onClick: + " + materia.creditos + " creditos");
-//            Log.d("HEY HEY!", "total:  " + getTotalCredit() + " creditos");
+        holder.cardItem.setOnClickListener(view -> {
+            MaterialCardView card = (MaterialCardView) view;
+            card.toggle();
+
+            if (card.isChecked())
+                precargaListener.onClickMateria(materia.creditos);
+            else
+                precargaListener.onClickMateria(-1 * materia.creditos);
+
         });
 
     }
