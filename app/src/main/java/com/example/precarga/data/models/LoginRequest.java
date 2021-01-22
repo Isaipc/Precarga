@@ -6,7 +6,6 @@ public class LoginRequest {
 
     @SerializedName("login")
     private String usuario;
-
     private String password;
 
     public LoginRequest(String usuario, String password) {

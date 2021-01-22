@@ -1,49 +1,97 @@
 package com.example.precarga.data.models;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "materias")
 public class Materia {
-
-    @PrimaryKey(autoGenerate = true)
-    public int id;
-
-    @NonNull
-    public String nombre;
-
+    private int id;
+    private String nombre;
     @SerializedName("nombre_corto")
-    @NonNull
-    public String nombreCorto;
+    private String nombreCorto;
+    private String clave;
+    private String grupo;
+    private int periodo;
+    private int creditos;
+    private int teoricas;
+    private int practicas;
+    private String tipo;
 
-    @NonNull
-    public String clave;
+    public int getId() {
+        return id;
+    }
 
-    public int creditos;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int teoricas;
+    public String getNombre() {
+        return nombre;
+    }
 
-    public int practicas;
-
-    public String tipo;
-
-    public Materia(
-            @NonNull String clave,
-            @NonNull String nombre,
-            @NonNull String nombreCorto,
-            int creditos,
-            int teoricas,
-            int practicas) {
-        this.id = 0;
+    public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getNombreCorto() {
+        return nombreCorto;
+    }
+
+    public void setNombreCorto(String nombreCorto) {
         this.nombreCorto = nombreCorto;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
         this.creditos = creditos;
+    }
+
+    public int getTeoricas() {
+        return teoricas;
+    }
+
+    public void setTeoricas(int teoricas) {
         this.teoricas = teoricas;
+    }
+
+    public int getPracticas() {
+        return practicas;
+    }
+
+    public void setPracticas(int practicas) {
         this.practicas = practicas;
-        this.tipo = "N";
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

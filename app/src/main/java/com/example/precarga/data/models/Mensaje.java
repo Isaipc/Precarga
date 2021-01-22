@@ -1,6 +1,6 @@
 package com.example.precarga.data.models;
 
-public class MensajeResponse {
+public class Mensaje {
 
     private String mensaje;
 

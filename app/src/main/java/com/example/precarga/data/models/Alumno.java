@@ -2,27 +2,20 @@ package com.example.precarga.data.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UsuarioResponse {
+public class Alumno {
 
     private String id;
     private String nombre;
     private String control;
-
     @SerializedName("nombre_carrera")
     private String nombreCarrera;
-
     @SerializedName("nomcorto_carrera")
     private String nomCortoCarrera;
-
     private int periodo;
-
     @SerializedName("nuevo_periodo")
     private int nuevoPeriodo;
-
     private double promedio;
-
     private int creditos;
-
     private String inscrito;
     private String registro;
 

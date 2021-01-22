@@ -6,10 +6,8 @@ public class LoginResponse {
 
     @SerializedName("access_token")
     private String accessToken;
-
     @SerializedName("token_type")
     private String tokenType;
-
     @SerializedName("expires_at")
     private String expiresAt;
 
