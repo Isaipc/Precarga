@@ -1,65 +1,64 @@
 package com.example.precarga.api;
 
+import com.example.precarga.data.models.Alumno;
 import com.example.precarga.data.models.LoginRequest;
 import com.example.precarga.data.models.LoginResponse;
-import com.example.precarga.data.models.Materia;
-import com.example.precarga.data.models.MensajeResponse;
-import com.example.precarga.data.models.ReticulaResponse;
-import com.example.precarga.data.models.UsuarioResponse;
-
-import java.util.List;
+import com.example.precarga.data.models.Mensaje;
+import com.example.precarga.data.models.Precarga;
+import com.example.precarga.data.models.Reticula;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface ApiService {
 
+    /* Dirección donde se encuentra alojado el servicio web */
     String URL = "https://auth-precarga.herokuapp.com/api/";
 
+    /* Crea una sesión de usuario */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @POST("auth/login")
     Call<LoginResponse> login(
             @Body LoginRequest user
     );
 
+    /* Cierra una sesión de usuario */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("auth/logout")
-    Call<MensajeResponse> logout(
+    Call<Mensaje> logout(
             @Header("Authorization") String token
     );
 
+    /* Solicita los datos del alumno */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("auth/user")
-    Call<UsuarioResponse> obtenerDatosUsuario(
+    Call<Alumno> obtenerDatosAlumno(
             @Header("Authorization") String token
     );
 
+    /* Guardar la precarga con las materias seleccionadas */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
-    @FormUrlEncoded
     @POST("precarga/guardar")
-    Call<MensajeResponse> guardarPrecarga(
+    Call<Mensaje> guardarPrecarga(
             @Header("Authorization") String token,
-            @Field("materias") List<Materia> materias
+            @Body Precarga precarga
     );
 
+    /* Solicita las materias precargadas del alumno */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
-    @GET("precarga/solicitar")
-    Call<ReticulaResponse> solicitarPrecarga(
+    @GET("precarga/obtenerPrecarga")
+    Call<Reticula> obtenerPrecarga(
             @Header("Authorization") String token
     );
 
+    /* Solicita las materias disponibles para precarga (de la reticula) */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
-    @GET("obtenerMaterias")
-    Call<ReticulaResponse> obtenerReticula(
-            @Query("periodo") int periodo
+    @GET("precarga/obtenerMaterias")
+    Call<Reticula> obtenerMaterias(
+            @Header("Authorization") String token
     );
-
-
 }
