@@ -51,7 +51,7 @@ public interface ApiService {
     /* Solicita las materias precargadas del alumno */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("precarga/obtenerPrecarga")
-    Call<Reticula> obtenerPrecarga(
+    Call<Precarga> obtenerPrecarga(
             @Header("Authorization") String token
     );
 

@@ -22,12 +22,12 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
             new DiffUtil.ItemCallback<Materia>() {
                 @Override
                 public boolean areItemsTheSame(@NonNull Materia oldItem, @NonNull Materia newItem) {
-                    return oldItem.id == newItem.id;
+                    return oldItem.getId() == newItem.getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(@NonNull Materia oldItem, @NonNull Materia newItem) {
-                    return oldItem.nombre.equals(newItem.nombre);
+                    return oldItem.getNombre().equals(newItem.getNombre());
                 }
             };
 
@@ -65,9 +65,9 @@ public class MateriaAdapter extends ListAdapter<Materia, MateriaAdapter.MateriaH
             card.toggle();
 
             if (card.isChecked())
-                precargaListener.onClickMateria(materia.creditos);
+                precargaListener.onClickMateria(materia.getCreditos());
             else
-                precargaListener.onClickMateria(-1 * materia.creditos);
+                precargaListener.onClickMateria(-1 * materia.getCreditos());
 
         });
 
