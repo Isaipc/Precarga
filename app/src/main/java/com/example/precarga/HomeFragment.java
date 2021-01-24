@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
-import com.example.precarga.data.models.UsuarioResponse;
+import com.example.precarga.data.models.Alumno;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
@@ -73,14 +73,14 @@ public class HomeFragment extends Fragment {
         String token = sessionManager.fetchAuthToken();
         ApiService apiService = ApiAdapter.getApiService();
 
-        apiService.obtenerDatosUsuario(token).enqueue(new Callback<UsuarioResponse>() {
+        apiService.obtenerDatosAlumno(token).enqueue(new Callback<Alumno>() {
             @Override
-            public void onResponse(@NotNull Call<UsuarioResponse> call,
-                                   @NotNull Response<UsuarioResponse> response) {
+            public void onResponse(@NotNull Call<Alumno> call,
+                                   @NotNull Response<Alumno> response) {
 
                 if (response.isSuccessful()) {
 
-                    UsuarioResponse usuario = response.body();
+                    Alumno usuario = response.body();
 
                     assert usuario != null;
 
@@ -90,12 +90,18 @@ public class HomeFragment extends Fragment {
                     promedio.setText(String.valueOf(usuario.getPromedio()));
                     creditos.setText(String.valueOf(usuario.getCreditos()));
                     inscripcion.setText(usuario.getInscrito());
+                } else if (response.code() == 401) {
+                    Snackbar.make(requireView(), response.errorBody().toString(), Snackbar.LENGTH_SHORT)
+                            .show();
+                    Utils.solicitarLogin(requireActivity());
                 }
             }
 
             @Override
-            public void onFailure(@NotNull Call<UsuarioResponse> call, @NotNull Throwable t) {
-                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG)
+            public void onFailure(@NotNull Call<Alumno> call, @NotNull Throwable t) {
+                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_SHORT)
+                        .show();
+                Snackbar.make(requireView(), t.getMessage(), Snackbar.LENGTH_SHORT)
                         .show();
             }
         });

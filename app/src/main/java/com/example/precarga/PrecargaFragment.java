@@ -9,19 +9,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.precarga.adapter.MateriaAdapter;
 import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
 import com.example.precarga.data.models.Materia;
-import com.example.precarga.data.models.ReticulaResponse;
+import com.example.precarga.data.models.Precarga;
 import com.example.precarga.databinding.FragmentPrecargaBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -39,6 +37,7 @@ public class PrecargaFragment extends Fragment {
 
     private FragmentPrecargaBinding binding;
     private PrecargaListener mListener;
+    private SessionManager sessionManager;
     private int totalCreditos;
 
     @Override
@@ -54,13 +53,14 @@ public class PrecargaFragment extends Fragment {
 
         mRoot = binding.getRoot();
 
+        sessionManager = new SessionManager(requireContext());
 
         mListener = creditos -> {
             totalCreditos += creditos;
             binding.totalCredit.setText(String.valueOf(totalCreditos));
         };
 
-        setupMateriaList();
+        setupPrecarga();
         return mRoot;
     }
 
@@ -107,35 +107,39 @@ public class PrecargaFragment extends Fragment {
         }
     }
 
-    private void setupMateriaList() {
+    private void setupPrecarga() {
         final MateriaAdapter adapter = new MateriaAdapter();
+
         adapter.setPrecargaListener(mListener);
 
-        RecyclerView rvMaterias = mRoot.findViewById(R.id.list_materias);
-        TextView tvTotalCredit = mRoot.findViewById(R.id.total_credit);
-
-        rvMaterias.setAdapter(adapter);
+        binding.listMaterias.setAdapter(adapter);
 
         ApiService apiService = ApiAdapter.getApiService();
-
-        SessionManager sessionManager = new SessionManager(requireContext());
         String token = sessionManager.fetchAuthToken();
 
-        apiService.solicitarPrecarga(token).enqueue(new Callback<ReticulaResponse>() {
+        apiService.obtenerPrecarga(token).enqueue(new Callback<Precarga>() {
             @Override
-            public void onResponse(@NotNull Call<ReticulaResponse> call,
-                                   @NotNull Response<ReticulaResponse> response) {
+            public void onResponse(@NotNull Call<Precarga> call,
+                                   @NotNull Response<Precarga> response) {
+
                 if (response.isSuccessful()) {
                     assert response.body() != null;
-                    List<Materia> materias = response.body().getMaterias();
 
+                    List<Materia> materias = response.body().getMaterias();
                     adapter.submitList(materias);
+
+                } else if (response.code() == 401) {
+                    Snackbar.make(requireView(), response.errorBody().toString(), Snackbar.LENGTH_SHORT)
+                            .show();
+                    Utils.solicitarLogin(requireActivity());
                 }
             }
 
             @Override
-            public void onFailure(@NotNull Call<ReticulaResponse> call, @NotNull Throwable t) {
-                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG)
+            public void onFailure(@NotNull Call<Precarga> call, @NotNull Throwable t) {
+                Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_SHORT)
+                        .show();
+                Snackbar.make(requireView(), t.getMessage(), Snackbar.LENGTH_SHORT)
                         .show();
             }
         });

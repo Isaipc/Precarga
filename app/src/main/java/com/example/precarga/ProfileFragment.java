@@ -1,7 +1,5 @@
 package com.example.precarga;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
-import com.example.precarga.data.models.MensajeResponse;
+import com.example.precarga.data.models.Mensaje;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -43,29 +41,22 @@ public class ProfileFragment extends Fragment {
     private void logout() {
         ApiService apiService = ApiAdapter.getApiService();
         apiService.logout(sessionManager.fetchAuthToken())
-                .enqueue(new Callback<MensajeResponse>() {
+                .enqueue(new Callback<Mensaje>() {
                     @Override
-                    public void onResponse(@NotNull Call<MensajeResponse> call,
-                                           @NotNull Response<MensajeResponse> response) {
+                    public void onResponse(@NotNull Call<Mensaje> call,
+                                           @NotNull Response<Mensaje> response) {
                         if (response.isSuccessful()) {
-                            cerrar();
+                            Utils.solicitarLogin(requireActivity());
                         }
                     }
 
                     @Override
-                    public void onFailure(@NotNull Call<MensajeResponse> call, @NotNull Throwable t) {
-                        Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_LONG)
+                    public void onFailure(@NotNull Call<Mensaje> call, @NotNull Throwable t) {
+                        Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_SHORT)
+                                .show();
+                        Snackbar.make(requireView(), t.getMessage(), Snackbar.LENGTH_SHORT)
                                 .show();
                     }
                 });
-    }
-
-    private void cerrar() {
-        sessionManager.saveAuthToken(null);
-
-        startActivity(new Intent(this.requireContext(), LoginActivity.class));
-        this.requireActivity().finish();
-
-        requireActivity().setResult(Activity.RESULT_OK);
     }
 }
