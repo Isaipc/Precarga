@@ -18,6 +18,24 @@ public class Alumno {
     private int creditos;
     private String inscrito;
     private String registro;
+    private int especiales;
+    private int repites;
+
+    public int getEspeciales() {
+        return especiales;
+    }
+
+    public void setEspeciales(int especiales) {
+        this.especiales = especiales;
+    }
+
+    public int getRepites() {
+        return repites;
+    }
+
+    public void setRepites(int repites) {
+        this.repites = repites;
+    }
 
     public String getId() {
         return id;

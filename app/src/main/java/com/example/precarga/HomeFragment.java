@@ -35,6 +35,8 @@ public class HomeFragment extends Fragment {
     TextView promedio;
     TextView creditos;
     TextView inscripcion;
+    TextView especiales;
+    TextView repites;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class HomeFragment extends Fragment {
         promedio = root.findViewById(R.id.text_promedio);
         creditos = root.findViewById(R.id.text_cred_acum);
         inscripcion = root.findViewById(R.id.text_f_inscripcion);
+        especiales = root.findViewById(R.id.text_especiales);
+        repites = root.findViewById(R.id.text_repites);
 
         obtenerDatos();
 
@@ -90,6 +94,9 @@ public class HomeFragment extends Fragment {
                     promedio.setText(String.valueOf(usuario.getPromedio()));
                     creditos.setText(String.valueOf(usuario.getCreditos()));
                     inscripcion.setText(usuario.getInscrito());
+                    especiales.setText(String.valueOf(usuario.getEspeciales()));
+                    repites.setText(String.valueOf(usuario.getRepites()));
+
                 } else if (response.code() == 401) {
                     Snackbar.make(requireView(), response.errorBody().toString(), Snackbar.LENGTH_SHORT)
                             .show();

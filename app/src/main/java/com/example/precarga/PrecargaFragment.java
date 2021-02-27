@@ -18,14 +18,11 @@ import com.example.precarga.adapter.MateriaAdapter;
 import com.example.precarga.api.ApiAdapter;
 import com.example.precarga.api.ApiService;
 import com.example.precarga.data.SessionManager;
-import com.example.precarga.data.models.Materia;
-import com.example.precarga.data.models.Precarga;
+import com.example.precarga.data.models.ResponsePrecarga;
 import com.example.precarga.databinding.FragmentPrecargaBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -117,16 +114,15 @@ public class PrecargaFragment extends Fragment {
         ApiService apiService = ApiAdapter.getApiService();
         String token = sessionManager.fetchAuthToken();
 
-        apiService.obtenerPrecarga(token).enqueue(new Callback<Precarga>() {
+        apiService.obtenerPrecarga(token).enqueue(new Callback<ResponsePrecarga>() {
             @Override
-            public void onResponse(@NotNull Call<Precarga> call,
-                                   @NotNull Response<Precarga> response) {
+            public void onResponse(Call<ResponsePrecarga> call, Response<ResponsePrecarga> response) {
 
                 if (response.isSuccessful()) {
                     assert response.body() != null;
 
-                    List<Materia> materias = response.body().getMaterias();
-                    adapter.submitList(materias);
+                    ResponsePrecarga materias = response.body();
+                    adapter.submitList(materias.getMaterias());
 
                 } else if (response.code() == 401) {
                     Snackbar.make(requireView(), response.errorBody().toString(), Snackbar.LENGTH_SHORT)
@@ -136,7 +132,7 @@ public class PrecargaFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(@NotNull Call<Precarga> call, @NotNull Throwable t) {
+            public void onFailure(Call<ResponsePrecarga> call, Throwable t) {
                 Snackbar.make(requireView(), getString(R.string.error), Snackbar.LENGTH_SHORT)
                         .show();
                 Snackbar.make(requireView(), t.getMessage(), Snackbar.LENGTH_SHORT)

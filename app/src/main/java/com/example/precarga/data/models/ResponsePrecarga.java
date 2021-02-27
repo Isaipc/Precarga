@@ -2,7 +2,7 @@ package com.example.precarga.data.models;
 
 import java.util.List;
 
-public class Precarga {
+public class ResponsePrecarga {
     private List<Materia> materias;
 
     public List<Materia> getMaterias() {

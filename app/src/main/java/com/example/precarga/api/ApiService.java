@@ -3,9 +3,12 @@ package com.example.precarga.api;
 import com.example.precarga.data.models.Alumno;
 import com.example.precarga.data.models.LoginRequest;
 import com.example.precarga.data.models.LoginResponse;
+import com.example.precarga.data.models.Materia;
 import com.example.precarga.data.models.Mensaje;
-import com.example.precarga.data.models.Precarga;
-import com.example.precarga.data.models.Reticula;
+import com.example.precarga.data.models.ResponseMaterias;
+import com.example.precarga.data.models.ResponsePrecarga;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -45,20 +48,20 @@ public interface ApiService {
     @POST("precarga/guardar")
     Call<Mensaje> guardarPrecarga(
             @Header("Authorization") String token,
-            @Body Precarga precarga
+            @Body List<Materia> materias
     );
 
     /* Solicita las materias precargadas del alumno */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("precarga/obtenerPrecarga")
-    Call<Precarga> obtenerPrecarga(
+    Call<ResponsePrecarga> obtenerPrecarga(
             @Header("Authorization") String token
     );
 
     /* Solicita las materias disponibles para precarga (de la reticula) */
     @Headers({"Content-Type: application/json;charset=UTF-8", "X-Requested-With: XMLHttpRequest"})
     @GET("precarga/obtenerMaterias")
-    Call<Reticula> obtenerMaterias(
+    Call<ResponseMaterias> obtenerMaterias(
             @Header("Authorization") String token
     );
 }
